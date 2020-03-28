@@ -3,7 +3,7 @@ project(sorting-algorithms)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++2a")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W -Wall -Wextra -Werror")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W -Wall -Wextra")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wpedantic -Wconversion -Wcast-align -Wunused -Wshadow -Wold-style-cast")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wpointer-arith -Wcast-qual -Wno-missing-braces -Winline -Wreorder")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wsynth -Wsign-promo -Wvla -Wnon-virtual-dtor -Wpacked -Wenum-compare \
@@ -20,6 +20,10 @@ set(SOURCE_FILES
         src/algo.cpp
         src/SortingAlgorithms.cpp
         include/SortingAlgorithms.hpp
+        src/TerminalDisplay.cpp
+        include/TerminalDisplay.hpp
+        include/Time.hpp
+        src/Time.cpp
         )
 
 add_executable(sorting-algorithms ${SOURCE_FILES})

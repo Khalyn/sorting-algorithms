@@ -7,8 +7,10 @@
 
 #include <iostream>
 #include <SortingAlgorithms.hpp>
-#include "algo.hpp"
 #include <unistd.h>
+#include "TerminalDisplay.hpp"
+#include "algo.hpp"
+#include "Time.hpp"
 
 void initializeDecreasingArray(std::vector<int> &array) {
 	size_t size = array.size();
@@ -18,31 +20,44 @@ void initializeDecreasingArray(std::vector<int> &array) {
 }
 
 void SortingAlgorithms::start() {
+	Time chrono;
 	std::cout << "Hello ! Here is a algorithm tester." << std::endl;
 	std::cout << "You can write a number which is the size of the tested vector, and see how many time each algorithm takes." << std::endl;
+	std::cout << "Commands :\tquit\tstop the program" << std::endl;
 	while (this->isContinue) {
-		std::cout << "<input min: 100 | max: 100000>: ";
-		unsigned long i;
-		std::cin >> i;
+		std::cout << term::lcyan << "<input min: 100 | max: 100000>: " << term::lgreen;
+		std::string mystr;
+		std::getline(std::cin, mystr);
+		if (mystr == "quit") break;
+		char* p;
+		unsigned long i = std::strtoul(mystr.c_str(), &p, 10);
+		if (*p) {
+			std::cout << term::red << "<System>: '" << mystr << "' isn't a positive integer number or a valid command." << std::endl;
+			continue;
+		}
 		if (i < 100) { i = 100; }
 		else if (i > 100000) { i = 100000; }
 
 		std::vector<int> array(i, 0);
 		initializeDecreasingArray(array);
-		std::cout << "<><><><> Sorting Algorithms: " << i << " elements <><><><>" << std::endl;
-		std::cout << "[.] Selection sort\t| executing..." << std::flush;
-		sleep(2);
+		std::cout << term::lblue << "<><><><> Sorting Algorithms: " << i << " elements <><><><>" << term::reset << std::endl;
+		std::cout << term::yellow << "[.] Selection sort\t| executing..." << term::reset << std::flush;
+		chrono.reset();
+		chrono.resume();
 		algo::selectionSort(array);
-		std::cout << "\r\033[K[✔] Selection sort\t| " << 0.465 << "s" << std::endl;
+		chrono.pause();
+		std::cout << term::lgreen << "\r\033[K[✔] Selection sort\t| "<< chrono.get() << "s" << term::reset << std::endl;
 		initializeDecreasingArray(array);
-		std::cout << "[.] Bubble sort\t| executing..." << std::flush;
-		sleep(2);
+		std::cout << term::yellow << "[.] Bubble sort\t\t| executing..." << std::flush;
+		chrono.reset();
 		algo::bubbleSort(array);
-		std::cout << "\r\033[K[✔] Bubble sort\t\t| " << 0.865 << "s" << std::endl;
+		chrono.pause();
+		std::cout << term::lgreen << "\r\033[K[✔] Bubble sort\t\t| "<< chrono.get() << "s" << term::reset << std::endl;
 
-		std::cout << "Average time : ..." << std::endl;
-		std::cout << "Best time : ..." << std::endl;
-		std::cout << "Worst time : ..." << std::endl;
+		std::cout << term::lblue << "<><><><> Results analysis <><><><>" << term::reset << std::endl;
+		std::cout << "Average time : ...s" << std::endl;
+		std::cout << "Best time : ...s" << std::endl;
+		std::cout << "Worst time : ...s" << std::endl;
 		std::cout << std::endl;
 	}
 }
