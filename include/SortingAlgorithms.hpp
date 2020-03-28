@@ -7,8 +7,9 @@
 
 #include "vector"
 
-namespace sort {
-	void selection(std::vector<int> &array);
+namespace algo {
+	void	selectionSort(std::vector<int> &array);
+	void	bubbleSort(std::vector<int> &array);
 }
 
 #endif //PROJET_SORTINGALGORITHMS_HPP
