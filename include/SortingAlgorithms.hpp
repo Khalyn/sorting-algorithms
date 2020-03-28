@@ -1,15 +1,19 @@
 /*
+** EPITECH PROJECT, 2021
 ** sorting-algorithms
+** File description:
+** Created by khalyn,
 */
 
-#ifndef PROJET_SORTINGALGORITHMS_HPP
-#define PROJET_SORTINGALGORITHMS_HPP
+#ifndef SORTING_ALGORITHMS_SORTINGALGORITHMS_HPP
+#define SORTING_ALGORITHMS_SORTINGALGORITHMS_HPP
 
-#include "vector"
+class SortingAlgorithms {
+public:
+	explicit SortingAlgorithms() : isContinue(true) {};
+	void	start();
+private:
+	bool	isContinue;
+};
 
-namespace algo {
-	void	selectionSort(std::vector<int> &array);
-	void	bubbleSort(std::vector<int> &array);
-}
-
-#endif //PROJET_SORTINGALGORITHMS_HPP
+#endif //SORTING_ALGORITHMS_SORTINGALGORITHMS_HPP

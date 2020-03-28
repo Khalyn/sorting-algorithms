@@ -12,11 +12,22 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wsynth -Wsign-promo -Wvla -Wnon-virtual
     -Wabi=11 -Wctor-dtor-privacy -Winit-self -Wfloat-equal -Wtype-limits -Wredundant-decls")
 
 include_directories(include)
+include_directories(${SFML_INCLUDE_DIR})
 
 set(SOURCE_FILES
         src/main.cpp
-        include/SortingAlgorithms.hpp
+        include/algo.hpp
+        src/algo.cpp
         src/SortingAlgorithms.cpp
+        include/SortingAlgorithms.hpp
         )
 
 add_executable(sorting-algorithms ${SOURCE_FILES})
+set(CMAKE_MODULE_PATH "/usr/share/SFML/cmake/Modules/" ${CMAKE_MODULE_PATH})
+find_package(SFML 2 REQUIRED COMPONENTS audio network graphics window system)
+set(SFML_STATIC_LIBRARIES TRUE)
+
+if(NOT SFML_FOUND)
+    message(FATAL_ERROR "SFML couldn't be located!")
+endif()
+target_link_libraries(sorting-algorithms sfml-audio sfml-network sfml-graphics sfml-window sfml-system)
