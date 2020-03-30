@@ -15,7 +15,7 @@ Time::Time(bool autoStart)
 double Time::get() noexcept {
 	if (isRunning) {
 		auto lNow = std::chrono::high_resolution_clock::now();
-		secondsCount += (double)(lNow - last).count() / std::chrono::high_resolution_clock::period::den;
+		secondsCount += static_cast<double>((lNow - last).count()) / std::chrono::high_resolution_clock::period::den;
 		last = lNow;
 	}
 	return secondsCount;
@@ -32,7 +32,7 @@ void Time::pause() noexcept {
 	if (isRunning) {
 		isRunning = false;
 		auto lNow = std::chrono::high_resolution_clock::now();
-		secondsCount += (double)(lNow - last).count() / std::chrono::high_resolution_clock::period::den;
+		secondsCount += static_cast<double>((lNow - last).count()) / std::chrono::high_resolution_clock::period::den;
 	}
 }
 

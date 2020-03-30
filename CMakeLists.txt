@@ -3,6 +3,7 @@ project(sorting-algorithms)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++2a")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native -O2")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W -Wall -Wextra")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wpedantic -Wconversion -Wcast-align -Wunused -Wshadow -Wold-style-cast")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wpointer-arith -Wcast-qual -Wno-missing-braces -Winline -Wreorder")
@@ -17,7 +18,6 @@ include_directories(${SFML_INCLUDE_DIR})
 set(SOURCE_FILES
         src/main.cpp
         include/algo.hpp
-        src/algo.cpp
         src/SortingAlgorithms.cpp
         include/SortingAlgorithms.hpp
         src/TerminalDisplay.cpp

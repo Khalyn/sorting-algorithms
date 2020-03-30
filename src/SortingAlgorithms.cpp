@@ -39,20 +39,31 @@ void SortingAlgorithms::start() {
 		else if (i > 100000) { i = 100000; }
 
 		std::vector<int> array(i, 0);
-		initializeDecreasingArray(array);
 		std::cout << term::lblue << "<><><><> Sorting Algorithms: " << i << " elements <><><><>" << term::reset << std::endl;
+
+		initializeDecreasingArray(array);
 		std::cout << term::yellow << "[.] Selection sort\t| executing..." << term::reset << std::flush;
 		chrono.reset();
 		chrono.resume();
 		algo::selectionSort(array);
 		chrono.pause();
 		std::cout << term::lgreen << "\r\033[K[✔] Selection sort\t| "<< chrono.get() << "s" << term::reset << std::endl;
+
 		initializeDecreasingArray(array);
 		std::cout << term::yellow << "[.] Bubble sort\t\t| executing..." << std::flush;
 		chrono.reset();
 		algo::bubbleSort(array);
 		chrono.pause();
 		std::cout << term::lgreen << "\r\033[K[✔] Bubble sort\t\t| "<< chrono.get() << "s" << term::reset << std::endl;
+
+		initializeDecreasingArray(array);
+		std::cout << term::yellow << "[.] std::sort\t\t| executing..." << std::flush;
+		chrono.reset();
+		std::sort(array.begin(), array.end());
+		chrono.pause();
+		std::cout << term::lgreen << "\r\033[K[✔] std::sort\t\t| "<< chrono.get() << "s" << term::reset << std::endl;
+
+
 
 		std::cout << term::lblue << "<><><><> Results analysis <><><><>" << term::reset << std::endl;
 		std::cout << "Average time : ...s" << std::endl;
